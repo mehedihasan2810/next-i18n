@@ -63,6 +63,8 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+
+    --radius: 0.5rem;
   }
 }
 
@@ -73,13 +75,6 @@
   body {
     @apply bg-background text-foreground;
   }
-
-  .skiptranslate {
-    @apply sr-only;
-    /* visibility: hidden !important;
-    width: 0 !important;
-    height: 0 !important; */
-  }
 }
 
 body {
@@ -87,7 +82,13 @@ body {
 }
 
 .skiptranslate {
-  visibility: hidden !important;
-  width: 0 !important;
-  height: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border-width: 0 !important;
 }

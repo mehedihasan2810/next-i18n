@@ -1,20 +1,20 @@
-import { useTranslations } from "next-intl";
-// import LocaleSwitcher from "./LocaleSwitcher";
-import NavigationLink from "./NavigationLink";
 import GoogleTranslate from "@/GoogleTranslate";
+import Link from "next/link";
 
 export default function Navigation() {
-  const t = useTranslations("Navigation");
-
   return (
     <header>
       <nav className="max-w-5xl mx-auto px-4 flex justify-between py-2">
-        <div>
-          <NavigationLink href="/">{t("home")}</NavigationLink>
+        <div className="flex items-center gap-8">
+          <Link className="hover:underline" href="/">
+            Home
+          </Link>
+          <Link className="hover:underline" href="/feedbacks">
+            Feedbacks
+          </Link>
         </div>
 
         <GoogleTranslate />
-        {/* <LocaleSwitcher /> */}
       </nav>
     </header>
   );

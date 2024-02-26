@@ -2,9 +2,15 @@
 
 /* eslint-disable no-undef */
 import { useEffect, useState } from "react";
-import { SelectPicker } from "rsuite";
 import { getCookie, hasCookie, setCookie } from "cookies-next";
-import "rsuite/dist/rsuite.min.css";
+
+import { Command, CommandGroup, CommandItem } from "@/components/ui/command";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { CaretSortIcon, CheckIcon } from "@radix-ui/react-icons";
 
 const languages = [
   { label: "English", value: "/auto/en" },
@@ -13,16 +19,21 @@ const languages = [
 ];
 
 import React from "react";
+import { cn } from "./lib/utils";
+import { Button } from "./components/ui/button";
 
 const GoogleTranslate = () => {
-  const [selected, setSelected] = useState<string>("/auto/en");
+  const [isLangSwitcherOpen, setIsLangSwitcherOpen] = useState(false);
+  const [selectedLang, setSelectedLang] = useState("/auto/en");
 
   const googleTranslateElementInit = () => {
+    // @ts-ignore
     new window.google.translate.TranslateElement(
       {
         pageLanguage: "auto",
         autoDisplay: false,
         includedLanguages: "en,ms,ar", // If you remove it, by default all google supported language will be included
+        // @ts-ignore
         layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
       },
       "google_translate_element"
@@ -41,47 +52,72 @@ const GoogleTranslate = () => {
 
     if (hasCookie("googtrans")) {
       // @ts-ignore
-      setSelected(getCookie("googtrans"));
+      setSelectedLang(getCookie("googtrans"));
     } else {
-      setSelected("/auto/en");
+      setSelectedLang("/auto/en");
     }
   }, []);
 
-  const langChange = (e, m, evt) => {
-    evt.preventDefault();
+  // @ts-ignore
+  const langChange = (e: string) => {
+    if (e === selectedLang) {
+      setIsLangSwitcherOpen(false);
+      return;
+    }
     if (hasCookie("googtrans")) {
       setCookie("googtrans", decodeURI(e));
-      setSelected(e);
+      setSelectedLang(e);
     } else {
       setCookie("googtrans", e);
-      setSelected(e);
+      setSelectedLang(e);
     }
+    setIsLangSwitcherOpen(false);
     window.location.reload();
   };
 
   return (
     <div>
-      <div
-        className="sr-only"
-        id="google_translate_element"
-        // style={{
-        //   width: "0px",
-        //   height: "0px",
-        //   position: "absolute",
-        //   left: "50%",
-        //   zIndex: -99999,
-        //   visibility: "hidden",
-        // }}
-      ></div>
+      <div className="sr-only" id="google_translate_element" />
 
-      <SelectPicker
-        data={languages}
-        style={{ width: 100 }}
-        value={selected}
-        searchable={false}
-        onSelect={(e, m, evt) => langChange(e, m, evt)}
-        placeholder="Lang"
-      />
+      <Popover open={isLangSwitcherOpen} onOpenChange={setIsLangSwitcherOpen}>
+        <PopoverTrigger asChild>
+          <Button
+            variant="outline"
+            role="combobox"
+            aria-expanded={isLangSwitcherOpen}
+            className="w-[200px] justify-between"
+          >
+            {
+              languages.find((framework) => framework.value === selectedLang)
+                ?.label
+            }
+            <CaretSortIcon className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-[200px] p-0">
+          <Command>
+            <CommandGroup>
+              {languages.map((framework) => (
+                <CommandItem
+                  key={framework.value}
+                  value={framework.value}
+                  onSelect={langChange}
+                >
+                  {framework.label}
+                  <CheckIcon
+                    className={cn(
+                      "ml-auto h-4 w-4",
+                      selectedLang === framework.value
+                        ? "opacity-100"
+                        : "opacity-0"
+                    )}
+                  />
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          </Command>
+        </PopoverContent>
+      </Popover>
     </div>
   );
 };
