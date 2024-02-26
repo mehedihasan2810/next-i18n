@@ -1,6 +1,7 @@
 import { useTranslations } from "next-intl";
-import LocaleSwitcher from "./LocaleSwitcher";
+// import LocaleSwitcher from "./LocaleSwitcher";
 import NavigationLink from "./NavigationLink";
+import GoogleTranslate from "@/GoogleTranslate";
 
 export default function Navigation() {
   const t = useTranslations("Navigation");
@@ -11,7 +12,9 @@ export default function Navigation() {
         <div>
           <NavigationLink href="/">{t("home")}</NavigationLink>
         </div>
-        <LocaleSwitcher />
+
+        <GoogleTranslate />
+        {/* <LocaleSwitcher /> */}
       </nav>
     </header>
   );
