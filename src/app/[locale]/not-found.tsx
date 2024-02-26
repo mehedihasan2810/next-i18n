@@ -1,15 +1,15 @@
-import {useTranslations} from 'next-intl';
-import PageLayout from 'components/PageLayout';
+import { useTranslations } from "next-intl";
 
 // Note that `app/[locale]/[...rest]/page.tsx`
 // is necessary for this page to render.
 
 export default function NotFoundPage() {
-  const t = useTranslations('NotFoundPage');
+  const t = useTranslations("NotFoundPage");
 
   return (
-    <PageLayout title={t('title')}>
-      <p className="max-w-[460px]">{t('description')}</p>
-    </PageLayout>
+    <div className="mt-20 max-w-[460px]">
+      <h1 className="font-bold text-xl">{t("title")}</h1>
+      <p className="">{t("description")}</p>
+    </div>
   );
 }

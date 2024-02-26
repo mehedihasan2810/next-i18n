@@ -1,43 +1,45 @@
-import clsx from 'clsx';
-import {Inter} from 'next/font/google';
-import {getTranslations, unstable_setRequestLocale} from 'next-intl/server';
-import {ReactNode} from 'react';
-import Navigation from 'components/Navigation';
-import {locales} from '../../config';
+import { Inter } from "next/font/google";
+import { getTranslations, unstable_setRequestLocale } from "next-intl/server";
+import { ReactNode } from "react";
+import { locales } from "../../config";
+import Navigation from "@/components/Navigation";
+import { cn } from "@/lib/utils";
 
-const inter = Inter({subsets: ['latin']});
+const inter = Inter({ subsets: ["latin"] });
 
 type Props = {
   children: ReactNode;
-  params: {locale: string};
+  params: { locale: string };
 };
 
 export function generateStaticParams() {
-  return locales.map((locale) => ({locale}));
+  return locales.map((locale) => ({ locale }));
 }
 
 export async function generateMetadata({
-  params: {locale}
-}: Omit<Props, 'children'>) {
-  const t = await getTranslations({locale, namespace: 'LocaleLayout'});
+  params: { locale },
+}: Omit<Props, "children">) {
+  const t = await getTranslations({ locale, namespace: "LocaleLayout" });
 
   return {
-    title: t('title')
+    title: t("title"),
   };
 }
 
 export default async function LocaleLayout({
   children,
-  params: {locale}
+  params: { locale },
 }: Props) {
   // Enable static rendering
   unstable_setRequestLocale(locale);
 
   return (
     <html className="h-full" lang={locale}>
-      <body className={clsx(inter.className, 'flex h-full flex-col')}>
+      <body className={cn(inter.className, "h-full")}>
         <Navigation />
+        <main className="max-w-5xl mx-auto px-4">
         {children}
+        </main>
       </body>
     </html>
   );

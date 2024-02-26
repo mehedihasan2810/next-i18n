@@ -1,19 +1,18 @@
-import {useTranslations} from 'next-intl';
-import LocaleSwitcher from './LocaleSwitcher';
-import NavigationLink from './NavigationLink';
+import { useTranslations } from "next-intl";
+import LocaleSwitcher from "./LocaleSwitcher";
+import NavigationLink from "./NavigationLink";
 
 export default function Navigation() {
-  const t = useTranslations('Navigation');
+  const t = useTranslations("Navigation");
 
   return (
-    <div className="bg-slate-850">
-      <nav className="container flex justify-between p-2 text-white">
+    <header>
+      <nav className="max-w-5xl mx-auto px-4 flex justify-between py-2">
         <div>
-          <NavigationLink href="/">{t('home')}</NavigationLink>
-          <NavigationLink href="/pathnames">{t('pathnames')}</NavigationLink>
+          <NavigationLink href="/">{t("home")}</NavigationLink>
         </div>
         <LocaleSwitcher />
       </nav>
-    </div>
+    </header>
   );
 }

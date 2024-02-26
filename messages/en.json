@@ -1,43 +1,31 @@
 {
   "IndexPage": {
-    "title": "next-intl example",
-    "description": "This is a basic example that demonstrates the usage of <code>next-intl</code> with the Next.js App Router. Try changing the locale in the top right corner and see how the content changes."
+    "welcome_title": "Welcome Brother",
+    "about_title": "About me",
+    "why_I_title": "Why I am your guy",
+    "welcome_desc": "Hope you are well",
+    "about_desc": "Hi, I'm Mehedi Hasan, a full-stack developer with a passion for making the web awesome. I love mixing cool ideas with the latest techie stuff. My goal is simple: create websites and apps that people enjoy using. From the front look to the behind-the-scenes code, I've got it covered. Always learning new tricks and keeping up with what's hot in tech, I'm on a mission to improve the online world. Let's team up, turn ideas into user-friendly websites, and make the web an even cooler space for everyone.",
+    "why_I_desc": "I'm a good fit for your project because I know my stuff when it comes to building websites. I'm into both the front and back parts of it, making sure everything works smoothly. I'm always learning new things to stay on top of the latest tech trends. What sets me apart is my knack for turning ideas into easy-to-use websites. I'm excited to bring my skills and energy to your team and help make things even better on the web. Let's work together to create awesome stuff!"
   },
-  "PathnamesPage": {
-    "title": "Pathnames",
-    "description": "<p>The pathnames are internationalized too.</p><p>If you're using the default language English, you'll see <code>/en/pathnames</code> in the browser address bar on this page.</p><p>If you change the locale to German, the URL is localized accordingly (<code>/de/pfadnamen</code>).</p>"
-  },
+
   "Error": {
     "title": "Something went wrong!",
-    "description": "<p>We've unfortunately encountered an error.</p><p>You can try to <retry>reload the page</retry> you were visiting.</p>"
+    "description": "We've unfortunately encountered an error. You can try to reload the page you were visiting."
   },
   "NotFoundPage": {
     "title": "Page not found",
     "description": "Please double-check the browser address bar or use the navigation to go to a known page."
   },
+
   "LocaleLayout": {
     "title": "next-intl example"
   },
+
   "LocaleSwitcher": {
     "label": "Change language",
-    "locale": "{locale, select, de {🇩🇪 Deutsch} en {🇺🇸 English} other {Unknown}}"
+    "locale": "{locale, select, en {English} ar {Arabic} ms {Malay} de {Deutsch}  other {Unknown}}"
   },
   "Navigation": {
-    "home": "Home",
-    "pathnames": "Pathnames"
-  },
-  "PageLayout": {
-    "links": {
-      "docs": {
-        "title": "Docs",
-        "description": "Learn more about next-intl in the official docs.",
-        "href": "https://next-intl-docs.vercel.app/"
-      },
-      "source": {
-        "title": "Source code",
-        "description": "Browse the source code of this example on GitHub.",
-        "href": "https://github.com/amannn/next-intl/tree/main/examples/example-app-router"
-      }
-    }
+    "home": "Home"
   }
 }

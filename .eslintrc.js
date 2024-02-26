@@ -1,19 +1,9 @@
 module.exports = {
   env: {
-    node: true
+    node: true,
   },
   extends: [
-    'molindo/typescript',
-    'molindo/react',
-    'molindo/tailwind',
-    'plugin:@next/next/recommended'
+    "eslint:recommended",
+    "next/core-web-vitals",
   ],
-  overrides: [
-    {
-      files: ['*.spec.tsx'],
-      rules: {
-        'import/no-extraneous-dependencies': 'off'
-      }
-    }
-  ]
 };
